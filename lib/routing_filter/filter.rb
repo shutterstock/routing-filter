@@ -20,6 +20,8 @@ module RoutingFilter
 
       def extract_segment!(pattern, path)
         path.sub!(pattern) { $2 || '' }
+        Rails.logger.info "extract_segment:"
+        Rails.logger.info path
         path.replace('/') if path.empty?
         $1
       end

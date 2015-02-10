@@ -39,7 +39,7 @@ module RoutingFilter
       end
 
       def locales_pattern
-        @@locales_pattern ||= %r(^/(#{self.locales.map { |l| Regexp.escape(l.to_s) }.join('|')})(?=/|$))
+        @@locales_pattern ||= %r(^#{PATH_PREFIX}(#{(self.locales + [""] ).map {|l| "/" + l.to_s }.map { |l| Regexp.escape(l) }.join('|')})(?=/|$))
       end
     end
 
